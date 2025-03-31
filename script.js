@@ -77,16 +77,16 @@
 // Em épocas de pouco dinheiro, os comerciantes estão procurando aumentar suas vendas oferecendo desconto.
 // Faça um aplicativo que possa receber o valor de um produto e imprima o novo valor tendo em vista que o desconto foi de 9%.
 
-let valordoproduto = parseFloat(prompt("Digite o valor do produto:")).toFixed(2)
-if(isNaN (valordoproduto)){
-    alert("Insira um valor válido!")
-}else{
-function calculardesconto(){
-    let produtocomdesconto = valordoproduto * 0.91
-    alert(`Seu produto com um desconto fica: R$ ${produtocomdesconto}`)
-}
-calculardesconto()
-}
+// let valordoproduto = parseFloat(prompt("Digite o valor do produto:")).toFixed(2)
+// if(isNaN (valordoproduto)){
+//     alert("Insira um valor válido!")
+// }else{
+// function calculardesconto(){
+//     let produtocomdesconto = valordoproduto * 0.91
+//     alert(`Seu produto com um desconto fica: R$ ${produtocomdesconto}`)
+// }
+// calculardesconto()
+// }
 
 
 // - Exercício 3
@@ -99,6 +99,7 @@ calculardesconto()
 // calcule o valor ganho com multas por mês; Sabendo ainda que 2% das fitas se estragam ao longo do ano, 
 // e um décimo do total é comprado para reposição, exiba a quantidade de fitas que a 
 // locadora terá no final do ano.
+
 
 // - Exercício 4
 // Entrar com um número no formato CDU (centena, dezena e unidade) e imprimi-lo invertido. 
@@ -119,3 +120,43 @@ calculardesconto()
 //     }
 // }
 // imprimirinvertido()
+
+
+// - Exercício 5
+// Criar um aplicativo que, dado um número de conta corrente com três dígitos, 
+// retorne o seu dígito verificador.
+//  Para encontrar o dígito verificador, siga o exemplo do número 235:
+
+// Somar o número da conta com o seu inverso: 235 + 532 = 767; 
+// Multiplicar cada dígito pela sua ordem posicional (da esquerda para a direita) e 
+// somar estes resultados: 7 * 1 + 6 * 2 + 7 * 3 = 40; O último dígito desse resultado é o dígito verificador da conta:
+//  último dígito de 40 é 0.
+
+let contacorrente = parseInt((prompt("Digite um número de 3 dígitos:")))
+let numerosinvertidos = ""
+if(contacorrente > 1000){
+        alert("Insira um valor menor que 1000!")
+    }else if(contacorrente < 100){
+        alert("Insira um valor maior ou igual a 100!")
+    }else if (isNaN(contacorrente) || isNaN (numerosinvertidos)){
+        alert("Digite um valor de 3 dígitos válidos!") 
+}else{
+function descobrirocodigoverificador(){
+let stringconta = String(contacorrente)
+  
+for(let i = stringconta.length -1; i >= 0; i--){
+    numerosinvertidos += stringconta[i]
+}
+soma = parseInt(contacorrente) + parseInt(numerosinvertidos)
+let stringsoma = String(soma)
+let somaverificador = 0
+for(let i = 0; i < stringsoma.length; i++){
+   somaverificador += parseInt(stringsoma[i])*(i+1)
+}
+let codigoverificador = somaverificador % 10;
+alert(`O inverso da sua conta corrente é: ${numerosinvertidos}`)
+alert(`A soma do número da conta corrente com o inverso dela é: ${soma}`)
+alert(`O seu código verificador é: ${codigoverificador}`)
+}
+descobrirocodigoverificador()
+}
